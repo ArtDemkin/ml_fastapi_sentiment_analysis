@@ -14,4 +14,4 @@ def root():
 
 @app.post("/predict/")
 def predict(item: Item):
-    return classifier(item.text)[0]
+    return classifier(item.text )[0]

@@ -6,7 +6,7 @@ class Item(BaseModel):
     text: str
 
 app = FastAPI()
-classifier = pipeline("sentiment-analysis")
+classifier = pipeline("sentiment-analysis", "blanchefort/rubert-base-cased-sentiment")
 
 @app.get("/")
 def root():

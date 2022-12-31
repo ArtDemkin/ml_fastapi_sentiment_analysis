@@ -7,11 +7,12 @@ class Item(BaseModel):
 
 app = FastAPI()
 classifier = pipeline("sentiment-analysis", "blanchefort/rubert-base-cased-sentiment")
-
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
-
+df = open('chats.csv', 'r+', encoding="UTF-8")
+for line in df:
+    category = classifier([line])
+    @app.get("/")
+    async def root(line, category):
+        print(line, category)
 @app.post("/predict/")
 def predict(item: Item):
     return classifier(item.text )[0]
